@@ -9,6 +9,7 @@ weatherForm.addEventListener('submit', (e) => {
     e.preventDefault()
     
     const location = search.value
+    
 
     messageOne.textContent = 'Loading...'
     messageTwo.textContent = ''
@@ -19,9 +20,22 @@ weatherForm.addEventListener('submit', (e) => {
             messageOne.textContent = data.error;
         } else{
             messageOne.textContent = data.location 
-            messageTwo.textContent = data.forecast 
+            messageTwo.textContent = data.forecast
+            //messageTwo.textContent = data.forecast 
+            if(data){
+                console.table(data.forecast.daily.data[0].precipType)
+                if(data.forecast.daily.icon === 'rain'){
+                    document.body.style.backgroundImage = "url('/images/rain.gif')";
+                }
+                else if(data.forecast.daily.icon === 'clear-day'){
+                    document.body.style.backgroundImage = "url('/images/sun.gif')";
+                }
+                else if(data.forecast.daily.icon === 'rain'){
+                    document.body.style.backgroundImage = "url('/images/rain.gif')";
+                }
+            }
+            //document.querySelector('body').style.backgroundColor = "red";
         }
     })
 })
 })
-
