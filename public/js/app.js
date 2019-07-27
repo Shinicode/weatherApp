@@ -20,10 +20,9 @@ weatherForm.addEventListener('submit', (e) => {
             messageOne.textContent = data.error;
         } else{
             messageOne.textContent = data.location 
-            messageTwo.textContent = data.forecast
-            //messageTwo.textContent = data.forecast 
+            messageTwo.textContent =  `${data.forecast.daily.data[0].summary}Highest Temperature is ${data.forecast.daily.data[0].temperatureHigh} and the lowest will be ${data.forecast.daily.data[0].temperatureLow}  ` 
             if(data){
-                console.table(data.forecast.daily.data[0].precipType)
+                console.table(data.forecast.daily.data[0])
                 if(data.forecast.daily.icon === 'rain'){
                     document.body.style.backgroundImage = "url('/images/rain.gif')";
                 }
@@ -34,7 +33,7 @@ weatherForm.addEventListener('submit', (e) => {
                     document.body.style.backgroundImage = "url('/images/rain.gif')";
                 }
             }
-            //document.querySelector('body').style.backgroundColor = "red";
+            
         }
     })
 })
